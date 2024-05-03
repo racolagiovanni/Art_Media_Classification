@@ -1,11 +1,8 @@
-// Initialize the Image Classifier method with MobileNet. A callback needs to be passed.
 let classifier;
-
-// A variable to hold the image we want to classify
 let img;
 
 function preload() {
-  classifier = ml5.imageClassifier('MobileNet');
+  classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/cdUsmYxlL/');
   // img = loadImage('images/bird.jpg');
 }
 
@@ -15,9 +12,9 @@ function setup() {
   let canvas = createCanvas(400, 400);
   label = createDiv('');
   confidence = createDiv('');
-
+  
   canvas.drop(gotFile);
-  background(0);
+  background(200,180,210);
   fill(255);
   noStroke();
   textSize(24);
@@ -38,14 +35,15 @@ function gotFile(file) {
   }
 }
 
-// A function to run when we get any errors and the results
+// in case of errors
 function gotResult(error, results) {
   // Display error in the console
   if (error) {
     console.error(error);
   }
-  // The results are in an array ordered by confidence.
-  label.html('Label: ' + results[0].label);
+//can't edit html text from p5.js so might change it to be included in the canvas to be able to change its font/size/color
+  label.html('Medium: ' + results[0].label);
   confidence.html('Confidence: ' + nf(results[0].confidence, 0, 2));
+
   console.log(results);
 }

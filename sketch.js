@@ -37,7 +37,6 @@ function gotFile(file) {
 
 // in case of errors
 function gotResult(error, results) {
-  // Display error in the console
   if (error) {
     console.error(error);
   }
